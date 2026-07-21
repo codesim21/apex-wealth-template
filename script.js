@@ -109,31 +109,31 @@
     updateEstimator();
   }
 
-  /* ---------- Contact form (demo) ---------- */
-  const form = document.getElementById("contact-form");
-  const status = document.getElementById("form-status");
+  // /* ---------- Contact form (demo) ---------- */
+  // const form = document.getElementById("contact-form");
+  // const status = document.getElementById("form-status");
 
-  if (form && status) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
+  // if (form && status) {
+  //   form.addEventListener("submit", (e) => {
+  //     e.preventDefault();
 
-      const name = form.querySelector("#name");
-      const email = form.querySelector("#email");
+  //     const name = form.querySelector("#name");
+  //     const email = form.querySelector("#email");
 
-      status.hidden = false;
+  //     status.hidden = false;
 
-      if (!name?.value.trim() || !email?.validity.valid) {
-        status.textContent = "Please provide a valid name and email address.";
-        status.classList.add("is-error");
-        return;
-      }
+  //     if (!name?.value.trim() || !email?.validity.valid) {
+  //       status.textContent = "Please provide a valid name and email address.";
+  //       status.classList.add("is-error");
+  //       return;
+  //     }
 
-      status.classList.remove("is-error");
-      status.textContent =
-        "Thank you. A partner will be in touch within one business day.";
-      form.reset();
-    });
-  }
+  //     status.classList.remove("is-error");
+  //     status.textContent =
+  //       "Thank you. A partner will be in touch within one business day.";
+  //     form.reset();
+  //   });
+  // }
 
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById("year");
