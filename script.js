@@ -134,7 +134,53 @@
   //     form.reset();
   //   });
   // }
-
+  const realForm = document.getElementById("contact-form");
+  const realStatus = document.getElementById("form-status");
+  
+  if (realForm) {
+      realForm.addEventListener("submit", function(e) {
+          // This stops the browser from redirecting to the Web3Forms page
+          e.preventDefault(); 
+          
+          const formData = new FormData(realForm);
+          const object = Object.fromEntries(formData);
+          const json = JSON.stringify(object);
+  
+          // Optional loading text while sending
+          if (realStatus) {
+              realStatus.hidden = false;
+              realStatus.textContent = "Sending securely...";
+              realStatus.classList.remove("is-error");
+          }
+  
+          // Send the data invisibly in the background
+          fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json"
+              },
+              body: json
+          })
+          .then(async (response) => {
+              if (response.status == 200) {
+                  if (realStatus) {
+                      // Display the premium success message right on your site
+                      realStatus.textContent = "Thank you. A partner will be in touch within one business day.";
+                  }
+                  realForm.reset(); // Clears the form fields
+              } else {
+                  if (realStatus) {
+                      realStatus.textContent = "Something went wrong. Please try again.";
+                      realStatus.classList.add("is-error");
+                  }
+              }
+          })
+          .catch(error => {
+              console.log(error);
+          });
+      });
+  }
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
